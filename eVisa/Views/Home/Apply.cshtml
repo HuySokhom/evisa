@@ -1,0 +1,119 @@
+﻿@{
+    ViewBag.Title = "Apply Information";
+}
+<div class="content" data-ng-init="getCountry();">
+    <div class="container">
+        <div class="row bs-wizard" style="border-bottom:0;">
+            <div class="col-xs-3 bs-wizard-step complete">
+                <div class="text-center bs-wizard-stepnum">Apply</div>
+                <div class="progress"><div class="progress-bar"></div></div>
+                <a href="#" class="bs-wizard-dot"></a>
+            </div>
+
+            <div class="col-xs-3 bs-wizard-step">
+                <!-- complete -->
+                <div class="text-center bs-wizard-stepnum">Application</div>
+                <div class="progress"><div class="progress-bar"></div></div>
+                <a href="#" class="bs-wizard-dot"></a>
+            </div>
+
+            <div class="col-xs-3 bs-wizard-step">
+                <!-- complete -->
+                <div class="text-center bs-wizard-stepnum">Review</div>
+                <div class="progress"><div class="progress-bar"></div></div>
+                <a href="#" class="bs-wizard-dot"></a>
+            </div>
+
+            <div class="col-xs-3 bs-wizard-step">
+                <!-- active -->
+                <div class="text-center bs-wizard-stepnum">Payment</div>
+                <div class="progress"><div class="progress-bar"></div></div>
+                <a href="#" class="bs-wizard-dot"></a>
+            </div>
+        </div>
+        <h1>
+            APPLY INFORMATION
+        </h1>
+        <div ng-click="test();">
+            Please provide the correct contact information below: (Only English character is required.)
+        </div>
+        @*using (Html.BeginForm("Agree", "Home", null, FormMethod.Post, new { @id = "myForm", @name = "applyForm"}))
+            {*@
+        <form name="applyForm" data-ng-submit="apply();">
+            
+            <label>Surname <span style="color: rgb(244,67,54);font-size:12px;">*</span></label>
+            <input ng-model="Surname" class="form-control" required name="Surname">
+            <div ng-messages="applyForm.Surname.$error">
+                <div ng-message="required">
+                    <span class="message">This is required.</span>
+                </div>
+            </div>
+            
+            <label>Given Name <span style="color: rgb(244,67,54);font-size:12px;">*</span></label>
+            <input ng-model="GivenName" required name="GivenName" class="form-control">
+            <div ng-messages="applyForm.GivenName.$error">
+                <div ng-message="required">
+                    <span class="message">This is required.</span>
+                </div>
+            </div>
+            
+            <label>Country <span style="color: rgb(244,67,54);font-size:12px;">*</span></label>
+            <select class="form-control"
+                    name="Country"
+                    ng-model="Country"
+                    required
+                    data-ng-options="country as country.name for country in countries track by country.id">
+                <option value=""></option>
+            </select>
+
+            <label>Phone Number <span style="color: rgb(244,67,54);font-size:12px;">*</span></label>
+            <input ng-model="PhoneNumber" required class="form-control" name="PhoneNumber">
+            <div ng-messages="applyForm.PhoneNumber.$error">
+                <div ng-message="required">
+                    <span class="message">This is required.</span>
+                </div>
+            </div>
+
+            <label>Primary Email <span style="color: rgb(244,67,54);font-size:12px;">*</span></label>
+            <input ng-model="PrimaryEmail" class="form-control" name="PrimaryEmail" required type="email">
+            <div ng-messages="applyForm.PrimaryEmail.$error">
+                <div ng-message="required">
+                    <span class="message">This is required.</span>
+                </div>
+            </div>
+
+            <label>Retype Primary Email <span style="color: rgb(244,67,54);font-size:12px;">*</span></label>
+            <input ng-model="RetypePrimaryEmail" class="form-control" name="RetypePrimaryEmail" required type="email">
+            <div ng-messages="applyForm.RetypePrimaryEmail.$error">
+                <div ng-message="required">
+                    <span class="message">This is required.</span>
+                </div>
+            </div>
+
+            <label>Secondary Email <span style="color: rgb(244,67,54);font-size:12px;">*</span></label>
+            <input ng-model="SecondaryEmail" name="SecondaryEmail" class="form-control" required type="email">
+            <div ng-messages="applyForm.SecondaryEmail.$error">
+                <div ng-message="required">
+                    <span class="message">This is required.</span>
+                </div>
+            </div>
+                 
+            <label>Heard About Us From? <span style="color: rgb(244,67,54);font-size:12px;">*</span></label>
+            <select class="form-control" required data-ng-model="heardFrom" ng-options="item as item.name for item in apply_items track by item.id">
+                <option value="">--Select--</option>
+            </select>
+            <br />
+            <input type="checkbox" id="myCheckbox" ng-model="check" class="filled-in" />
+            <label for="myCheckbox"></label>
+            You must read and agreed to the Terms & Conditions and you must understand that you may be asked to provide additional
+            information and documentation, prior receipt of which is needed before the e-Visa application can be accepted for processing.
+            
+            <button class="btn" data-ng-disabled="!check || applyForm.$invalid">
+                <i class="fa fa-check-circle-o"></i>
+                I Agree
+            </button>
+            <br /><br />
+            @*}*@
+        </form>
+    </div>
+</div>

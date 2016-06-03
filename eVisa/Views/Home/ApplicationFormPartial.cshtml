@@ -1,0 +1,217 @@
+﻿<div data-ng-init="getCountry();">
+    <h1>
+        1. Applicant Profiles
+    </h1>
+        <div class="row">
+            <div class="col-md-4">
+                <label>Surname</label>
+                <input type="text" data-ng-model="Surname" class="form-control" name="Surname" required>
+                <div ng-messages="appForm.Surname.$error">
+                    <div ng-message="required">
+                        <span class="message">This is required.</span>
+                    </div>
+                </div>
+
+                <label>Middle Name</label>
+                <input type="text" data-ng-model="MiddleName" class="form-control" required name="MiddleName">
+                <div ng-messages="appForm.MiddleName.$error">
+                    <div ng-message="required">
+                        <span class="message">This is required.</span>
+                    </div>
+                </div>
+
+                <label>Given Name</label>
+                <input type="text" data-ng-model="GivenName" class="form-control" required name="GivenName">
+                <div ng-messages="appForm.GivenName.$error">
+                    <div ng-message="required">
+                        <span class="message">This is required.</span>
+                    </div>
+                </div>
+
+                <label>Sex:</label>
+                <p>
+                    <input name="group1" type="radio" id="test1" />
+                    <label for="test1">Male</label>
+                    <input name="group1" type="radio" id="test2" />
+                    <label for="test2">Female</label>
+                </p>
+            </div>
+            <div class="col-md-4">
+                <label>Date of Birth</label>
+                <table style="width:300px;">
+                    <tr>
+                        <td>
+                            Day: <select ng-model="day" class="form-control" style="width:75px;" required ng-options="n for n in [] | rangeNumber:31"></select>
+                        </td>
+                        <td>
+                            Month: <select ng-model="month" class="form-control" style="width:75px;" required ng-options="n for n in [] | rangeNumber:12"></select>
+                        </td>
+                        <td>
+                            Year: <select ng-model="year" class="form-control" style="width:75px;" required ng-options="n for n in [] | rangeYear:1920"></select>
+                        </td>
+                        <td>
+                            <span class="require">*</span>
+                        </td>
+                    </tr>
+                </table>
+                <label>Country/Region of Birth</label>
+                <select class="form-control"
+                        data-ng-model="CountryRegion"
+                        required
+                        data-ng-options="country as country.name for country in countries track by country.id">
+                    <option value="">--Select--</option>
+                </select>
+                <label>Country of Nationality</label>
+                <select class="form-control"
+                        required
+                        data-ng-model="Nationality"
+                        data-ng-options="country as country.name for country in countries track by country.id">
+                    <option value="">--Select--</option>
+                </select>
+                
+                <label>Residential Address</label>
+                <input ng-model="ResidentialAddress" class="form-control" type="text">
+                
+            </div>
+        </div>
+    
+    <h1>
+        2. Passport Information
+    </h1>
+    <label>Upload your photo</label>
+    <input class="form-control" type="file" name="photo" />
+        
+    <label>Passport Number</label>
+    <input ng-model="PassportNumber" type="text" class="form-control" required name="PassportNumber">
+    <div ng-messages="appForm.PassportNumber.$error">
+        <div ng-message="required">
+            <span class="message">This is required.</span>
+        </div>
+    </div>
+        
+    <label>Issuing Date</label>
+    <table style="width:300px;">
+        <tr>
+            <td>
+                <select ng-model="day_issue" class="form-control" style="width:75px;" ng-options="n for n in [] | rangeNumber:31"></select>
+            </td>
+            <td>
+                <select ng-model="month_issue" class="form-control" style="width:75px;" ng-options="n for n in [] | rangeNumber:12"></select>
+            </td>
+            <td>
+                <select ng-model="year_issue" class="form-control" style="width:75px;" ng-options="n for n in [] | rangeYear:1920"></select>
+            </td>
+        </tr>
+    </table>
+    <label>Expiry Date</label>
+    <table style="width:300px;">
+        <tr>
+            <td>
+                Day: <select ng-model="day_expiry" class="form-control" style="width:75px;" ng-options="n for n in [] | rangeNumber:31"></select>
+            </td>
+            <td>
+                Month: <select ng-model="month_expiry" class="form-control" style="width:75px;" ng-options="n for n in [] | rangeNumber:12"></select>
+            </td>
+            <td>
+                Year: <select ng-model="year_expiry" class="form-control" style="width:75px;" ng-options="n for n in [] | rangeYearFuture:30"></select>
+            </td>
+        </tr>
+    </table>
+    <label>Country of Issue</label>
+    <select class="form-control"
+            data-ng-model="CountryOfIssue"
+            data-ng-options="country as country.name for country in countries track by country.id">
+        <option>--Select--</option>
+    </select>
+    
+    <h1>
+        3. Entry Date to Cambodia
+    </h1>
+    <label>Entry Date</label>
+    <table style="width:300px;">
+        <tr>
+            <td>
+                <select ng-model="day_entry" class="form-control" style="width:75px;" required ng-options="n for n in [] | rangeNumber:31"></select>
+            </td>
+            <td>
+                <select ng-model="month_entry" class="form-control" style="width:75px;" required ng-options="n for n in [] | rangeNumber:12"></select>
+            </td>
+            <td>
+                <select ng-model="year_entry" class="form-control" style="width:75px;" required ng-options="n for n in [] | rangeYear:1920"></select>
+            </td>
+            <td>
+                <span class="require">*</span>
+            </td>
+        </tr>
+    </table>
+    <label>Port of Entry</label>
+    <select class="form-control"
+            data-ng-model="PortOfEntry"
+            ng-options="option as option for option in ['Bavet (Svay Rieng)', 'Cham Yeam (Koh Kong)', 'Poi Pet (Banteay Meanchey)', 'Phnom Penh International Airport', 'Siem Reap International Airport']">
+        <option value="">--Select--</option>
+    </select>
+    <label>Visa type which you wish to apply for</label>
+    <select class="form-control">
+        <option value="">--Select--</option>
+        <option value="T">Tourist (T)</option>
+    </select>
+    
+    <h1>
+        4. Travel Information (Optional)
+    </h1>
+    <br />
+    <label>Mod of Travelling</label>
+    <select class="form-control"
+            data-ng-model="ModOfTravel"
+            ng-options="option as option for option in ['Bus', 'Car', 'Flight', 'Motocycle', 'Walk']">
+        <option value="">--Select--</option>
+    </select>
+    
+    <label>Arrival Vehicle No</label>
+    <input ng-model="ArrivalVehicleNo" class="form-control" name="ArrivalVehicleNo" required>
+    <div ng-messages="appForm.ArrivalVehicleNo.$error">
+        <div ng-message="required">
+            <span class="message">
+                This is required.
+            </span>
+        </div>
+    </div>
+
+    <label>Arrival Time</label>
+    <select class="form-control" data-ng-model="ArrivalTime"
+            ng-options="option as option for option in ['12:00 AM', '12:15 AM', '12:30 AM', '12:45 AM', '01:00 AM',
+                    '01:15 AM','01:30 AM','01:45 AM','02:00 AM','02:15 AM','02:30 AM','02:45 AM','03:00 AM','03:15 AM','03:30 AM','03:45 AM',
+                    '04:00 AM','04:15 AM','04:30 AM','04:45 AM','05:00 AM','05:15 AM','05:30 AM','05:45 AM','06:00 AM','06:15 AM', '06:30 AM',
+                    '06:45 AM','07:00 AM','07:15 AM','07:30 AM','07:45 AM','08:00 AM','08:15 AM','08:30 AM','08:45 AM','09:00 AM', '09:15 AM',
+                    '09:30 AM','09:45 AM','10:00 AM','10:15 AM','10:30 AM','10:45 AM','11:00 AM','11:15 AM','11:30 AM','11:45 AM', '12:00 PM',
+                    '12:15 PM','12:30 PM','12:45 PM','01:00 PM','01:15 PM','01:30 PM','01:45 PM','02:00 PM','02:15 PM','02:30 PM', '02:45 PM',
+                    '03:00 PM','03:15 PM','03:30 PM','03:45 PM','04:00 PM','04:15 PM','04:30 PM','04:45 PM','05:00 PM','05:15 PM', '05:30 PM',
+                    '05:45 PM','06:00 PM','06:15 PM','06:30 PM','06:45 PM','07:00 PM','07:15 PM','07:30 PM','07:45 PM','08:00 PM', '08:15 PM',
+                    '08:30 PM','08:45 PM','09:00 PM','09:15 PM','09:30 PM','09:45 PM','10:00 PM','10:15 PM','10:30 PM','10:45 PM', '11:00 PM',
+                    '11:00 PM','11:15 PM','11:30 PM','11:45 PM',
+                    ]">
+        <option value="">--Select--</option>
+    </select>
+        
+    <label>Address During Visit</label>
+    <input ng-model="AddressDuringVisit" class="form-control" name="AddressDuringVisit" required>
+    <div ng-messages="appForm.AddressDuringVisit.$error">
+        <div ng-message="required">
+            <span class="message">
+                This is required.
+            </span>
+        </div>
+    </div>
+        
+    <label>Organization, Persons To</label>
+    <input ng-model="OrganizationPersonsTo" class="form-control" name="OrganizationPersonsTo" required>
+    <div ng-messages="appForm.OrganizationPersonsTo.$error">
+        <div ng-message="required">
+            <span class="message">
+                This is required.
+            </span>
+        </div>
+    </div>
+
+</div>
+    

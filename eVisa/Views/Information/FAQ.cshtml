@@ -1,0 +1,29 @@
+﻿@model IEnumerable<eVisa.ViewModel.FAQView>
+@{
+    ViewBag.Title = "FAQ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="content">
+    <br />
+    <div class="container">
+        @*<div class="col-md-1"></div>*@
+        <div class="col-md-12">
+            <h1>Frequently Asked Questions</h1>
+
+            @foreach (var item in Model)
+            {
+                <a class="collap-icon collapsed" data-toggle="collapse" data-parent="#accordion" href="#@item.Id" style="text-decoration:none;">
+                </a>
+
+                @Html.Raw(item.question)
+                <br />
+                <div id="@item.Id" class="panel-collapse collapse ">
+                    <div class="panel-body">
+                        <p>@Html.Raw(item.answer)</p>
+                    </div>
+                </div>
+            }
+            <br /><br />
+        </div>        
+    </div>
+</div>

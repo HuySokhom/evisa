@@ -1,0 +1,33 @@
+﻿@{
+    ViewBag.Title = "User Change Password";
+}
+<div class="content">
+    <br />
+    <div class="container">
+        <h1>Change Password</h1>
+
+        <label>Old Password</label>
+        <input ng-model="old_password" type="text" class="form-control" placeholder="input old password...">
+        
+        <label>New Password</label>
+        <input ng-model="new_password" type="text" class="form-control"  placeholder="input new password...">
+        
+        <label>Confirm Password</label>
+        <input ng-model="confirm_password" type="text" class="form-control" placeholder="input confirm password">
+        
+        <br/>
+        <a href="/User">
+            <button class="btn">
+                <i class="fa fa-times-circle-o"></i>
+                Cancel
+            </button>
+        </a>
+        <button class="btn">
+            <i class="fa fa-save"></i>
+            Save
+        </button>
+        <br /><br />
+    </div>
+</div>
+
+

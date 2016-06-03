@@ -1,0 +1,210 @@
+﻿@model eVisa.Models.Users
+@{
+    ViewBag.Title = "Sign Up";
+}
+
+<div class="content">
+    <div class="container" data-ng-init="getCountry();" data-ng-controller="singup_ctrl">
+        <br />
+        <h1>
+            FREQUENT E-VISA USER REGISTRATION
+        </h1>
+
+        <form name="applyForm" data-ng-submit="save();">
+            <ol class="rounded-list">
+                <li>
+                    <div><a href="">Personal Information</a></div>
+                    <label>Surname</label>
+                    <input type="text" class="form-control" ng-model="surname" required />
+                    <div></div>
+
+                    <label>Middle Name</label>
+                    <input type="text" class="form-control" ng-model="middleName" required />
+                    <div></div>
+
+                    <label>Given Name</label>
+                    <input type="text" class="form-control" ng-model="givenName" required />
+                    <div></div>
+
+                    <label>Sex</label>
+                    <p>
+                        <input type="radio" ng-model="sex" value="male" id="male" checked>
+                        <label for="male">Male</label>
+                        <input type="radio" ng-model="sex" value="female" id="female">
+                        <label for="female">FeMale</label>
+                    </p>
+                    <label>Date of Birth</label>
+                    <table style="width:300px;">
+                        <tr>
+                            <td>
+                                <select ng-model="day" class="form-control" style="width:75px;" required ng-options="n for n in [] | rangeNumber:31">
+                                    <option value="">Day</option>
+                                </select>
+                            </td>
+                            <td>
+                                <select ng-model="month" class="form-control" style="width:85px;" required ng-options="n for n in [] | rangeNumber:12">
+                                    <option value="">Month</option>
+                                </select>
+                            </td>
+                            <td>
+                                <select ng-model="year" class="form-control" style="width:75px;" required ng-options="n for n in [] | rangeYear:1920">
+                                    <option value="">Year</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </table>
+                    <label>Country/Region of Birth</label>
+                    <select class="form-control"
+                            data-ng-model="country"
+                            required
+                            data-ng-options="country as country.name for country in countries track by country.id">
+                        <option value="">--Select--</option>
+                    </select>
+                    <label>Country of Nationality</label>
+                    <select class="form-control"
+                            data-ng-model="nationality"
+                            required
+                            data-ng-options="country as country.name for country in countries track by country.id">
+                        <option value="">--Select--</option>
+                    </select>
+                    <label>Photo</label>
+                    <input class="form-control" type="file" name="file" id="upload_image" />
+                    <br />
+                    <img src="{{photo}}" title="photo" data-ng-if="photo" class="img-responsive" id="blah" style="width: 280px;" />
+                    <br />
+                </li>
+                <li>
+                    <div>
+                        <a href="">Passport Information</a>
+                    </div>
+                    <label for="last_name">PassportNo</label>
+                    <input type="text" class="form-control" ng-model="passportNo" required="required">
+                    <div>
+                    </div>
+
+                    <label>Country of Issue</label>
+                    <select class="form-control"
+                            data-ng-model="countryIssue"
+                            required
+                            data-ng-options="country as country.name for country in countries track by country.id">
+                        <option value="">--Select--</option>
+                    </select>
+                    <label>Passport Issue Date</label>
+                    <table style="width:300px;">
+                        <tr>
+                            <td>
+                                <select ng-model="day_passport" class="form-control" style="width:75px;" required ng-options="n for n in [] | rangeNumber:31">
+                                    <option value="">Day</option>
+                                </select>
+                            </td>
+                            <td>
+                                <select ng-model="month_passport" class="form-control" style="width:85px;" required ng-options="n for n in [] | rangeNumber:12">
+                                    <option value="">Month</option>
+                                </select>
+                            </td>
+                            <td>
+                                <select ng-model="year_passport" class="form-control" style="width:75px;" required ng-options="n for n in [] | rangeYear:1920">
+                                    <option value="">Year</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </table>
+                    <label>Passport Expire Date</label>
+                    <table style="width:300px;">
+                        <tr>
+                            <td>
+                                <select ng-model="day_passport_expire" class="form-control" style="width:75px;" required ng-options="n for n in [] | rangeNumber:31">
+                                    <option value="">Day</option>
+                                </select>
+                            </td>
+                            <td>
+                                <select ng-model="month_passport_expire" class="form-control" style="width:85px;" required ng-options="n for n in [] | rangeNumber:12">
+                                    <option value="">Month</option>
+                                </select>
+                            </td>
+                            <td>
+                                <select ng-model="year_passport_expire" class="form-control" style="width:75px;" required ng-options="n for n in [] | rangeYear:1920">
+                                    <option value="">Year</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </table>
+                </li>
+                <li>
+                    <div>
+                        <a href="">Contact Information</a>
+                    </div>
+
+
+                    <label>Given Name</label>
+                    <input ng-model="contactName" required class="form-control">
+                    <div>
+                    </div>
+
+
+                    <label>Primary E-mail</label>
+                    <input type="text" class="form-control" ng-model="primaryEmail" required>
+                    <div>
+                    </div>
+
+
+                    <label>Retype Primary E-mail</label>
+                    <input type="text" ng-model="RetypePrimaryEmail" required class="form-control">
+                    <div>
+                    </div>
+
+                    <label>Secondary E-mail</label>
+                    <input type="text" class="form-control" required ng-model="secondaryEmail">
+                    <div>
+                    </div>
+
+                    <label>Phone Number</label>
+                    <input type="text" class="form-control" required ng-model="phoneNumber">
+                    <div>
+                    </div>
+
+                    <label>Residential Address</label>
+                    <input type="text" class="form-control" required ng-model="residentialAddress">
+                    <div>
+                    </div>
+
+                    <label>Heard about us from?</label>
+                    <select class="form-control" required data-ng-model="heardFrom" ng-options="item as item.name for item in apply_items track by item.id">
+                        <option value="">--Select--</option>
+                    </select>
+                </li>
+                <li>
+                    <div>
+                        <a href="">Create UserID & Password</a>
+                    </div>
+                    <label for="last_name">User ID</label>
+                    <input type="text" class="form-control" ng-model="userId" required="required">
+                    <div>
+                    </div>
+
+                    <label for="last_name">Password</label>
+                    <input type="text" class="form-control" ng-model="password" required="required">
+                    <div>
+                    </div>
+
+                    <label for="last_name">Confirm Password</label>
+                    <input type="text" class="form-control" ng-model="confirmPassword" required="required">
+                    <div>
+                    </div>
+                </li>
+            </ol>
+
+            <button class="btn btn-submit" type="submit">
+                <i class="fa fa-send"></i>
+                Submit
+            </button>
+        </form>
+        <br />
+        <br />
+    </div>
+</div>
+
+@section Scripts
+{
+    <script type="text/javascript" src="/App/singup/singup_ctrl.js"></script>
+}

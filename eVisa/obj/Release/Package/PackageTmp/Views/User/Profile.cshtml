@@ -1,0 +1,167 @@
+﻿
+@{
+    ViewBag.Title = "User Profile";
+}
+<div class="content">
+    <br />
+    <div class="container" data-ng-init="getCountry();">
+        <h1>1. Personal Information</h1> 
+        <div class="">
+            <div class="col-md-4 col-sm-6">
+                <label>Surname</label>
+                <input type="text" data-ng-model="Surname" class="form-control" name="Surname" required>
+                <div ng-messages="appForm.Surname.$error">
+                    <div ng-message="required">This is required.</div>
+                </div>
+
+                <label>Middle Name</label>
+                <input type="text" data-ng-model="MiddleName" name="MiddleName" class="form-control" required>
+                <div ng-messages="appForm.MiddleName.$error">
+                    <div ng-message="required">This is required.</div>
+                </div>
+
+                <label>Given Name</label>
+                <input type="text" data-ng-model="GivenName" name="GivenName" class="form-control" required>
+                <div ng-messages="appForm.GivenName.$error">
+                    <div ng-message="required">This is required.</div>
+                </div>
+
+                <label>Sex:</label>
+                <p>
+                    <input name="group1" type="radio" id="test1" />
+                    <label for="test1">Male</label>
+                    <input name="group1" type="radio" id="test2" />
+                    <label for="test2">Female</label>
+                </p>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <label>Date of Birth</label>
+                <input type="text" class="form-control">
+
+                <label>Country/Region of Birth</label>
+                <select class="form-control"
+                        data-ng-model="CountryRegion"
+                        required
+                        data-ng-options="country as country.name for country in countries track by country.id">
+                    <option value="">--Select--</option>
+                </select>
+                <label>Country of Nationality</label>
+                <select class="form-control"
+                        required
+                        data-ng-model="Nationality"
+                        data-ng-options="country as country.name for country in countries track by country.id">
+                    <option value="">--Select--</option>
+                </select>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <img src="/Images/blank.gif" title="photo" class="img-responsive" id="blah" style="width: 265px;" />
+                <br />
+                <input class="form-control" type="file" name="photo" id="upload_image" />
+            </div>
+        </div>
+        <h1>2. Passport Information</h1> 
+        <div class="">
+            <label>Passport Number</label>
+            <input ng-model="PassportNumber" class="form-control" type="text" required name="PassportNumber">
+            <div ng-messages="appForm.PassportNumber.$error">
+                <div ng-message="required">This is required.</div>
+            </div>
+            <label>Issuing Date</label>
+            <table style="width:300px;">
+                <tr>
+                    <td>
+                        <select ng-model="day_issue" class="form-control" style="width:75px;" ng-options="n for n in [] | rangeNumber:31"></select>
+                    </td>
+                    <td>
+                        <select ng-model="month_issue" class="form-control" style="width:75px;" ng-options="n for n in [] | rangeNumber:12"></select>
+                    </td>
+                    <td>
+                        <select ng-model="year_issue" class="form-control" style="width:75px;" ng-options="n for n in [] | rangeYear:1920"></select>
+                    </td>
+                </tr>
+            </table>
+            <label>Expiry Date</label>
+            <table style="width:300px;">
+                <tr>
+                    <td>
+                        <select ng-model="day_expiry" class="form-control" style="width:75px;" ng-options="n for n in [] | rangeNumber:31"></select>
+                    </td>
+                    <td>
+                        <select ng-model="month_expiry" class="form-control" style="width:75px;" ng-options="n for n in [] | rangeNumber:12"></select>
+                    </td>
+                    <td>
+                        <select ng-model="year_expiry" class="form-control" style="width:75px;" ng-options="n for n in [] | rangeYearFuture:30"></select>
+                    </td>
+                </tr>
+            </table>
+            <label>Country of Issue</label>
+            <select class="form-control"
+                    data-ng-model="CountryOfIssue"
+                    data-ng-options="country as country.name for country in countries track by country.id">
+                <option>--Select--</option>
+            </select>
+        </div>
+        <h1>3. Contact Information</h1> 
+        <div class="">
+            <label>Surname</label>
+            <input type="text" data-ng-model="Surname" class="form-control" name="Surname" required>
+            <div ng-messages="appForm.Surname.$error">
+                <div ng-message="required message">This is required.</div>
+            </div>
+
+            <label>Primary E-mail</label>
+            <input type="text" class="form-control">            
+
+            <label>Retype Primary E-mail</label>    
+            <input type="text" class="form-control">
+                
+            <label>Secondary E-mail</label>
+            <input type="text" class="form-control">
+                
+            <label>Phone Number</label>
+            <input type="text" class="form-control">
+            
+            <label>Residential Address</label>
+            <input type="text" class="form-control">
+           
+            <label>Heard about us from?</label>
+            <select class="form-control" required data-ng-model="heardFrom" ng-options="item as item.name for item in apply_items track by item.id">
+                <option value="">--Select--</option>
+            </select>
+        </div>
+        <br />
+        <a href="/User">
+            <button class="btn">
+                <i class="fa fa-times-circle-o"></i>
+                Cancel
+            </button>
+        </a>
+        <button class="btn">
+            <i class="fa fa-save"></i>
+            Save
+        </button>
+        <br /><br />
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            function readURL(input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        $('#blah').attr('src', e.target.result);
+                    }
+
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+
+            $("#upload_image").change(function () {
+                readURL(this);
+            });
+        });
+    </script>
+}
